@@ -1,0 +1,30 @@
+{
+  "name": "usedevice",
+  "version": "1.0.0",
+  "description": "React Hook for detect device properties",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/redube/useDevice.git"
+  },
+  "keywords": [
+    "React",
+    "Hooks",
+    "Device",
+    "Resize",
+    "Browser"
+  ],
+  "author": "ChuckGonzalez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/redube/useDevice/issues"
+  },
+  "homepage": "https://github.com/redube/useDevice#readme",
+  "peerDependencies": {
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1"
+  }
+}
