@@ -1,4 +1,4 @@
-const Resizer = function() {
+const Resizer = function(state) {
   const client = {};
   let width = window.innerWidth;
   let height = window.innerHeight;

@@ -9,14 +9,14 @@ export default () => {
 
   useEffect(() => {
     const handleResize = () => {
-      const properties = resizer();
+      const properties = resizer(deviceProperties);
       setDeviceProperties(data => ({
         ...data,
         ...properties
       }));
     };
-    window.addEventListener("resize", resizer);
-    return () => window.removeEventListener("resize", resizer);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   });
 
   return deviceProperties;
