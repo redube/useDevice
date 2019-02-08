@@ -4,7 +4,7 @@ React Hook for detect device properties
 ### Install
 
 ```
-npm install -S usestate
+npm install -S usedevice
 ```
 
 ### Usage
