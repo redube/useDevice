@@ -1,4 +1,4 @@
-const Resizer = function({ state, breakpoints = [] }) {
+const Resizer = function({ deviceProperties: state, breakpoints = [] }) {
   const client = {};
 
   let width = window.innerWidth;
