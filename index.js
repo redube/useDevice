@@ -12,8 +12,11 @@ import resizer from "./resizerFunction";
 
 export default (props = {}) => {
   const { breakpoints = [] } = props || {};
+  const { breakpoint } = resizer({ deviceProperties, breakpoints });
+
   const [deviceProperties, setDeviceProperties] = useState({
-    ...deviceTemplate
+    ...deviceTemplate,
+    breakpoint
   });
 
   useEffect(() => {
