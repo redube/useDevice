@@ -35,7 +35,12 @@ const Resizer = function({ deviceProperties: state, breakpoints = [] }) {
     if (width > minLimit && width <= maxLimit) return true;
   });
 
-  return { ...client, width, height, breakpoint: breakpoint.name || null };
+  return {
+    ...client,
+    width,
+    height,
+    breakpoint: (breakpoint && breakpoint.name) || null
+  };
 };
 
 export default Resizer;
