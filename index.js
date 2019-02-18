@@ -12,7 +12,10 @@ import resizer from "./resizerFunction";
 
 export default (props = {}) => {
   const { breakpoints = [] } = props || {};
-  const { breakpoint } = resizer({ deviceProperties, breakpoints });
+  const { breakpoint } = resizer({
+    deviceProperties: deviceTemplate,
+    breakpoints
+  });
 
   const [deviceProperties, setDeviceProperties] = useState({
     ...deviceTemplate,
