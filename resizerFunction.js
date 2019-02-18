@@ -27,7 +27,7 @@ const Resizer = function({ state, breakpoints = [] }) {
       console.warning(
         "If you dont define a max, the max value will be Infinity"
       );
-    if (!min)
+    if (!min && min !== 0)
       console.warning(
         "If you dont define a min, the min value will be -Infinity"
       );

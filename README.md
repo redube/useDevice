@@ -1,4 +1,5 @@
 # useDevice
+
 React Hook for detect device properties
 
 ### Install
@@ -14,7 +15,7 @@ import useDevice from 'usedevice';
 
 const Component = () => {
   const device = useDevice();
-  
+
   return (
     <section>...</section>
   );
@@ -41,3 +42,40 @@ Device wil have the following properties
 ```
 
 In every resize the hook will execute and return a new object with the new properties
+
+### Breakpoints
+
+You can pass an array of breakpoints to the hook
+
+```
+import useDevice from 'usedevice';
+
+const breakpoints = [
+  {name: 'miniphone', min: 0, max: 320},
+  {name: 'phone', min: 320, max: 640},
+  {name: 'tablet', min: 640, max: 1080},
+  {name: 'desktop', min: 1080, max: Infinity},
+];
+
+const Component = () => {
+  const device = useDevice(breakpoints);
+
+  return (
+    <section>...</section>
+  );
+};
+```
+
+In the constant device you will receive the prop breakpoint with the name of the breakpoint matching, if multiple breakpoints match the name is from the first match.
+
+```
+{
+  breakpoint: 'desktop'
+  width: 1292,
+}
+
+{
+  breakpoint: 'phone'
+  width: 540,
+}
+```
