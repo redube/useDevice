@@ -1,15 +1,23 @@
 import { useEffect, useState } from "react";
-import deviceTemplate from "./DeviceProperties";
-import resizer from "./Resizer";
+import deviceTemplate from "./deviceTemplate";
+import resizer from "./resizerFunction";
 
-export default () => {
+/*****
+ * @param {Object} params
+ * @param {Array}  params.breakpoints      - List of breakpoints
+ * @param {String} params.breakpoints.name - Name of breakpoint
+ * @param {Number} params.breakpoints.min  - >  Amount of pixel
+ * @param {Number} params.breakpoints.max  - <= Amount of pixel
+ *****/
+
+export default ({ breakpoints = [] }) => {
   const [deviceProperties, setDeviceProperties] = useState({
     ...deviceTemplate
   });
 
   useEffect(() => {
     const handleResize = () => {
-      const properties = resizer(deviceProperties);
+      const properties = resizer({ deviceProperties, breakpoints });
       setDeviceProperties(data => ({
         ...data,
         ...properties
