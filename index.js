@@ -10,7 +10,8 @@ import resizer from "./resizerFunction";
  * @param {Number} params.breakpoints.max  - <= Amount of pixel
  *****/
 
-export default ({ breakpoints = [] }) => {
+export default (props = {}) => {
+  const { breakpoints = [] } = props;
   const [deviceProperties, setDeviceProperties] = useState({
     ...deviceTemplate
   });
