@@ -1,22 +1,24 @@
-if (typeof window === "undefined") {
-  global.window = {};
-}
+const isServer = typeof window === "undefined";
+
+if (isServer) global.window = {};
 
 const navigator = window.navigator || {};
 
-var isMobile = (function() {
-  var u = navigator.userAgent;
-  var b =
-    u.match(/Android/i) ||
-    u.match(/webOS/i) ||
-    u.match(/iPhone/i) ||
-    u.match(/iPad/i) ||
-    u.match(/iPod/i) ||
-    u.match(/BlackBerry/i) ||
-    u.match(/Windows Phone/i);
-  if (b) return true;
-  else return false;
-})();
+if (!isServer) {
+  var isMobile = (function() {
+    var u = navigator.userAgent;
+    var b =
+      u.match(/Android/i) ||
+      u.match(/webOS/i) ||
+      u.match(/iPhone/i) ||
+      u.match(/iPad/i) ||
+      u.match(/iPod/i) ||
+      u.match(/BlackBerry/i) ||
+      u.match(/Windows Phone/i);
+    if (b) return true;
+    else return false;
+  })();
+}
 
 var osFunction = function(userAgent) {
   var nAgt = (userAgent && userAgent) || navigator.userAgent;
@@ -108,26 +110,27 @@ var osFunction = function(userAgent) {
   };
 };
 
-var os = osFunction();
-
-var device = (function() {
-  if (isMobile) {
-    var width;
-    if (window.matchMedia("(orientation: portrait)").matches) {
-      width = window.innerWidth;
-      if (os.os === "iOS") width = screen.width;
+if (!isServer) {
+  var os = osFunction();
+  var device = (function() {
+    if (isMobile) {
+      var width;
+      if (window.matchMedia("(orientation: portrait)").matches) {
+        width = window.innerWidth;
+        if (os.os === "iOS") width = screen.width;
+      } else {
+        width = window.innerHeight;
+        if (os.os === "iOS") width = screen.height;
+      }
+      if (width < 650) return "phone";
+      else return "tablet";
     } else {
-      width = window.innerHeight;
-      if (os.os === "iOS") width = screen.height;
+      if (window.innerWidth > 1200) return "desktop";
+      else if (window.innerWidth < 815) return "phone";
+      else return "tablet";
     }
-    if (width < 650) return "phone";
-    else return "tablet";
-  } else {
-    if (window.innerWidth > 1200) return "desktop";
-    else if (window.innerWidth < 815) return "phone";
-    else return "tablet";
-  }
-})();
+  })();
+}
 
 export default userAgentStr => {
   (userAgentStr &&
