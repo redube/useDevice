@@ -1,6 +1,5 @@
 const isServer = typeof window === "undefined";
-
-if (isServer) global.window = {};
+if (isServer) window = {};
 
 const navigator = window.navigator || {};
 
