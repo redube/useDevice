@@ -1,3 +1,7 @@
+if (typeof window === "undefined") {
+  global.window = {};
+}
+
 const navigator = window.navigator || {};
 
 var isMobile = (function() {
