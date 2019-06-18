@@ -132,70 +132,72 @@ if (!isServer) {
 }
 
 export default userAgentStr => {
-  (userAgentStr &&
-    (userAgent => {
-      const isMobile = userAgent.match(
-        /Mobile|Windows Phone|Lumia|Android|webOS|iPhone|iPod|Blackberry|PlayBook|BB10|Opera Mini|\bCrMo\/|Opera Mobi/i
-      );
-      const isTablet = userAgent.match(/Tablet|iPad/i);
-      const isDesktop = !(isMobile || isTablet);
-      const device =
-        (isDesktop && "desktop") || ((isTablet && "tablet") || "phone");
-      const os = osFunction(userAgentStr);
+  return (
+    (userAgentStr &&
+      (userAgent => {
+        const isMobile = userAgent.match(
+          /Mobile|Windows Phone|Lumia|Android|webOS|iPhone|iPod|Blackberry|PlayBook|BB10|Opera Mini|\bCrMo\/|Opera Mobi/i
+        );
+        const isTablet = userAgent.match(/Tablet|iPad/i);
+        const isDesktop = !(isMobile || isTablet);
+        const device =
+          (isDesktop && "desktop") || ((isTablet && "tablet") || "phone");
+        const os = osFunction(userAgentStr);
 
-      return {
-        isTouch: !isDesktop,
-        isMobileAgent: !isDesktop,
-        isIE: (function() {
-          var myNav = userAgent.toLowerCase();
-          return myNav.indexOf("msie") !== -1
-            ? parseInt(myNav.split("msie")[1])
-            : false;
-        })(),
-        device: device,
-        width: (isDesktop && 1200) || ((isTablet && 600) || 320),
-        height: (isDesktop && 900) || ((isTablet && 800) || 640),
-        screenSize: device,
-        isOrientationCapable: !isDesktop,
-        orientation: (isDesktop && "landscape") || "portrait",
-        os: os.os,
-        browser: os.browser,
-        version: os.version
-      };
-    })(userAgentStr)) || {
-    isTouch: (function() {
-      var b =
-        "ontouchstart" in window ||
-        navigator.maxTouchPoints > 0 ||
-        navigator.msMaxTouchPoints > 0;
-      if (b) return true;
-      else return false;
-    })(),
-    isMobileAgent: isMobile,
-    isIE: (function() {
-      var myNav = navigator.userAgent.toLowerCase();
-      return myNav.indexOf("msie") != -1
-        ? parseInt(myNav.split("msie")[1])
-        : false;
-    })(),
-    device,
-    width: (os.os === "iOS" && screen.width) || window.innerWidth,
-    height: (os.os === "iOS" && screen.height) || window.innerHeight,
-    screenSize: device,
-    isOrientationCapable: (function() {
-      if (typeof window.matchMedia === "undefined") return false;
-      else return true;
-    })(),
-    orientation: (function() {
-      if (typeof window.matchMedia === "undefined") return "NOT_COMPATIBLE";
-      else {
-        if (window.matchMedia("(orientation: portrait)").matches)
-          return "portrait";
-        else return "landscape";
-      }
-    })(),
-    browser: os.browser,
-    os: os.os,
-    version: os.version
-  };
+        return {
+          isTouch: !isDesktop,
+          isMobileAgent: !isDesktop,
+          isIE: (function() {
+            var myNav = userAgent.toLowerCase();
+            return myNav.indexOf("msie") !== -1
+              ? parseInt(myNav.split("msie")[1])
+              : false;
+          })(),
+          device: device,
+          width: (isDesktop && 1200) || ((isTablet && 600) || 320),
+          height: (isDesktop && 900) || ((isTablet && 800) || 640),
+          screenSize: device,
+          isOrientationCapable: !isDesktop,
+          orientation: (isDesktop && "landscape") || "portrait",
+          os: os.os,
+          browser: os.browser,
+          version: os.version
+        };
+      })(userAgentStr)) || {
+      isTouch: (function() {
+        var b =
+          "ontouchstart" in window ||
+          navigator.maxTouchPoints > 0 ||
+          navigator.msMaxTouchPoints > 0;
+        if (b) return true;
+        else return false;
+      })(),
+      isMobileAgent: isMobile,
+      isIE: (function() {
+        var myNav = navigator.userAgent.toLowerCase();
+        return myNav.indexOf("msie") != -1
+          ? parseInt(myNav.split("msie")[1])
+          : false;
+      })(),
+      device,
+      width: (os.os === "iOS" && screen.width) || window.innerWidth,
+      height: (os.os === "iOS" && screen.height) || window.innerHeight,
+      screenSize: device,
+      isOrientationCapable: (function() {
+        if (typeof window.matchMedia === "undefined") return false;
+        else return true;
+      })(),
+      orientation: (function() {
+        if (typeof window.matchMedia === "undefined") return "NOT_COMPATIBLE";
+        else {
+          if (window.matchMedia("(orientation: portrait)").matches)
+            return "portrait";
+          else return "landscape";
+        }
+      })(),
+      browser: os.browser,
+      os: os.os,
+      version: os.version
+    }
+  );
 };
