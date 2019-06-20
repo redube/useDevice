@@ -1,12 +1,12 @@
 const Resizer = function({ deviceProperties: state, breakpoints = [] }) {
   const client = {};
 
-  let width = state.width;
-  let height = state.height;
+  let width = window.innerWidth;
+  let height = window.innerHeight;
 
   if (state.os === "iOS") {
-    width = (window.screen && screen.width) || width;
-    height = (window.screen && screen.height) || height;
+    width = screen.width;
+    height = screen.height;
   }
 
   if (!state.isMobileAgent) {

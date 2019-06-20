@@ -1,6 +1,6 @@
 {
   "name": "usedevice",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "React Hook for detect device properties",
   "main": "index.js",
   "scripts": {
