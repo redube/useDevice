@@ -66,7 +66,7 @@ var os = (function() {
 
   switch (os) {
     case "Mac OS X":
-      osVersion = /Mac OS X (10[\.\_\d]+)/.exec(nAgt)[1];
+      osVersion = /Mac OS X ([\.\_\d]+)/.exec(nAgt)[1]
       break;
 
     case "Android":
